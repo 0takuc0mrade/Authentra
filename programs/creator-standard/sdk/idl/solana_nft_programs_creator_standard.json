@@ -1,0 +1,989 @@
+{
+  "version": "3.0.2",
+  "name": "solana_nft_programs_creator_standard",
+  "instructions": [
+    {
+      "name": "InitRuleset",
+      "accounts": [
+        {
+          "name": "ruleset",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "initRulesetIx",
+          "type": {
+            "defined": "InitRulesetIx"
+          }
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 0
+      }
+    },
+    {
+      "name": "UpdateRuleset",
+      "accounts": [
+        {
+          "name": "ruleset",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "updateRulesetIx",
+          "type": {
+            "defined": "UpdateRulesetIx"
+          }
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 1
+      }
+    },
+    {
+      "name": "CloseRuleset",
+      "accounts": [
+        {
+          "name": "ruleset",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 2
+      }
+    },
+    {
+      "name": "InitMintManager",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "Mint metadata"
+        },
+        {
+          "name": "ruleset",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "Token program"
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "System program"
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 3
+      }
+    },
+    {
+      "name": "UpdateMintManager",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ruleset",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "System program"
+        }
+      ],
+      "args": [
+        {
+          "name": "updateMintManagerIx",
+          "type": {
+            "defined": "UpdateMintManagerIx"
+          }
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 4
+      }
+    },
+    {
+      "name": "SetInUseBy",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ruleset",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "inUseByAddress",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "holder",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 5
+      }
+    },
+    {
+      "name": "RemoveInUseBy",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 6
+      }
+    },
+    {
+      "name": "Approve",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "ruleset",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "holder",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "delegate",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "approveIx",
+          "type": {
+            "defined": "ApproveIx"
+          }
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 7
+      }
+    },
+    {
+      "name": "ApproveAndSetInUseBy",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ruleset",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "inUseByAddress",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "holder",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "delegate",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "approveAndSetInUseByIx",
+          "type": {
+            "defined": "ApproveAndSetInUseByIx"
+          }
+        }
+      ],
+      "discriminant": {
+        "type": "u8",
+        "value": 8
+      }
+    },
+    {
+      "name": "Burn",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "holder",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 9
+      }
+    },
+    {
+      "name": "Close",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 10
+      }
+    },
+    {
+      "name": "InitializeAccount",
+      "accounts": [
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 11
+      }
+    },
+    {
+      "name": "Revoke",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "holder",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 12
+      }
+    },
+    {
+      "name": "Transfer",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "mintMetadata",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "Mint metadata"
+        },
+        {
+          "name": "ruleset",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "from",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "to",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "instructions",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 13
+      }
+    },
+    {
+      "name": "CloseMintManager",
+      "accounts": [
+        {
+          "name": "mintManager",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "mint",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "holderTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "newTokenAuthority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "Token program"
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false,
+          "desc": "System program"
+        }
+      ],
+      "args": [],
+      "discriminant": {
+        "type": "u8",
+        "value": 14
+      }
+    }
+  ],
+  "accounts": [
+    {
+      "name": "MintManager",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "accountType",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          },
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "ruleset",
+            "type": "publicKey"
+          },
+          {
+            "name": "inUseBy",
+            "type": {
+              "option": "publicKey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Ruleset",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "accountType",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          },
+          {
+            "name": "version",
+            "type": "u8"
+          },
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "allowedPrograms",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "disallowedAddresses",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "extensions",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ApproveIx",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ApproveAndSetInUseByIx",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InitRulesetIx",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "allowedPrograms",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "disallowedAddresses",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "extensions",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateMintManagerIx",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UpdateRulesetIx",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "allowedPrograms",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "disallowedAddresses",
+            "type": {
+              "vec": "publicKey"
+            }
+          },
+          {
+            "name": "extensions",
+            "type": {
+              "vec": "publicKey"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "AccountType",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Ruleset"
+          },
+          {
+            "name": "MintManager"
+          },
+          {
+            "name": "Unrecognized"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidAccountType",
+      "msg": "Invalid account type"
+    },
+    {
+      "code": 6001,
+      "name": "DataTypeMismatch",
+      "msg": "Data type mismatch"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidMint",
+      "msg": "Invalid mint"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidAmount",
+      "msg": "Invalid amount"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidTokenAccount",
+      "msg": "Invalid token account"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidAuthority",
+      "msg": "Invalid authority address"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidMintManager",
+      "msg": "Invalid mint manager"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidMintMetadata",
+      "msg": "Invalid mint metadata"
+    },
+    {
+      "code": 6008,
+      "name": "InusufficientMinimumCreatorShare",
+      "msg": "Insufficient minimum creator share"
+    },
+    {
+      "code": 6009,
+      "name": "InvlaidHolderTokenAccount",
+      "msg": "Invalid holder token account"
+    },
+    {
+      "code": 6010,
+      "name": "InvalidTargetTokenAccount",
+      "msg": "Invalid target token account"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidCloseTokenAccount",
+      "msg": "Invalid token account to close"
+    },
+    {
+      "code": 6012,
+      "name": "InvalidHolderTokenAccount",
+      "msg": "Invalid holder token account"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidRuleset",
+      "msg": "Invalid ruleset"
+    },
+    {
+      "code": 6014,
+      "name": "InvalidPreTransferInstruction",
+      "msg": "Invalid pre transfer instruction"
+    },
+    {
+      "code": 6015,
+      "name": "InvalidPostTransferInstruction",
+      "msg": "Invalid post transfer instruction"
+    },
+    {
+      "code": 6016,
+      "name": "AddressDisallowed",
+      "msg": "Disallowed address included"
+    },
+    {
+      "code": 6017,
+      "name": "ProgramNotAllowed",
+      "msg": "Program not allowed in allowed programs to transfer"
+    },
+    {
+      "code": 6018,
+      "name": "UnknownAccount",
+      "msg": "Unknown account found in instruction"
+    },
+    {
+      "code": 6019,
+      "name": "AccountNotFound",
+      "msg": "Account not found in instruction"
+    },
+    {
+      "code": 6020,
+      "name": "TokenAlreadyInUse",
+      "msg": "Token already in use"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidTokenUser",
+      "msg": "Invalid token user"
+    },
+    {
+      "code": 6022,
+      "name": "TokenCurentlyInUse",
+      "msg": "Token currently in use"
+    },
+    {
+      "code": 6023,
+      "name": "InvalidRulesetAuthority",
+      "msg": "Invalid ruleset authority"
+    },
+    {
+      "code": 6024,
+      "name": "InvalidFreezeAuthority",
+      "msg": "Invalid freeze authority"
+    },
+    {
+      "code": 6025,
+      "name": "InvalidMintAuthority",
+      "msg": "Invalid mint authority"
+    },
+    {
+      "code": 6026,
+      "name": "NotEnoughRemainingAccounts",
+      "msg": "Not enought remaining accounts"
+    }
+  ],
+  "metadata": {
+    "origin": "shank",
+    "address": "ccsxqYAg64wuLEh45KabyPvkKjrEfDPsDZUQrGn7mf3",
+    "binaryVersion": "0.0.5",
+    "libVersion": "^0.0.5"
+  }
+}
