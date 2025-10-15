@@ -7,6 +7,7 @@ skip-lint = false
 
 [programs.localnet]
 content_licensing = "DA39KP5MXR6YSBAdEWX5z2anoykKjCBbuikZq9C6Dqbi"
+license_manager = "46768WTgs123tGwaS1XJ4dVd8eSUheh3rSvzkuBVM4y5"
 registery = "HtmwUFTvDsLbwbSRDPTJwJqvMuxuChK9L1TJM1tEmM6T"
 
 [registry]

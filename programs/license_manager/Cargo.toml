@@ -1,0 +1,28 @@
+[package]
+name = "license_manager"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "license_manager"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build"]
+
+
+[dependencies]
+anchor-lang = "0.31.1"
+solana-system-interface = { version = "2", features = ["bincode"] }
+
+
+[dev-dependencies]
+litesvm = "0.8.1"
+solana-sdk = "3.0.0"
+

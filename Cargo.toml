@@ -1,7 +1,7 @@
 [workspace]
 members = [
-    "programs/creator-standard/programs/solana-nft-programs-creator-standard",
-    "programs/registery"
+    "programs/license_manager"
+
 ]
 resolver = "2"
 
