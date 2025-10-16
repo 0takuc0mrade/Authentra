@@ -3,15 +3,36 @@ use crate::state::*;
 
 #[derive(Accounts)]
 pub struct UpdateMetadata<'info> {
-    #[account(mut, has_one = owner)]
-    pub content_account: Account<'info, ContentRecord>,
+    #[account(mut, signer)]
+    pub creator: AccountInfo<'info>,
 
-    pub owner: Signer<'info>,
+    #[account(
+        mut,
+        has_one = creator,
+        seeds = [b"content", creator.key.as_ref(), &content_record.content_hash],
+        bump = content_record.bump
+    )]
+    pub content_record: Account<'info, ContentRecord>,
 }
 
-pub fn handler(ctx: Context<UpdateMetadata>, new_uri: String) -> Result<()> {
-    let content = &mut ctx.accounts.content_account;
-    content.metadata_uri = new_uri;
-    msg!("📝 Metadata updated for {:?}", content.owner);
+pub fn handler(
+    ctx: Context<UpdateMetadata>,
+    new_title: Option<String>,
+    new_category: Option<String>,
+    new_uri: Option<String>,
+) -> Result<()> {
+    let record = &mut ctx.accounts.content_record;
+
+    if let Some(t) = new_title {
+        record.title = t;
+    }
+    if let Some(c) = new_category {
+        record.category = c;
+    }
+    if let Some(u) = new_uri {
+        record.uri = u;
+    }
+
+    msg!("✅ Metadata updated by {:?}", record.creator);
     Ok(())
 }
