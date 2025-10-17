@@ -39,7 +39,8 @@ fn test_transfer() {
     println!("Transfer successful!");
 }
 
-const PROGRAM_ID_STR: &str = "46768WTgs123tGwaS1XJ4dVd8eSUheh3rSvzkuBVM4y5";
+mod helpers;
+use helpers::*;
 
 fn setup_litesvm() -> (LiteSVM, Keypair, Pubkey) {
     let mut svm = LiteSVM::new();

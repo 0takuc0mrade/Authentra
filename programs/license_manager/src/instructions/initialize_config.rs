@@ -1,4 +1,4 @@
-use crate::{errors::LicenseError, state::LicenseConfig};
+use crate::state::LicenseConfig;
 use anchor_lang::prelude::*;
 
 #[derive(Accounts)]
